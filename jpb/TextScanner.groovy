@@ -2,11 +2,18 @@ package jpb
 
 public class TextScanner {
 
-    //def input
+    def value
 
-    def getMostRepeatedChars(String input){
+    def readInput(String input){
+        def file = new File(input)
+        if(!file.exists())
+            value = input
+        else value = file.getText()
+    }
 
-        def auxVal = input?.toLowerCase()
+    def getMostRepeatedChars(){
+
+        def auxVal = value?.toLowerCase()
 
         def int mostRepeatedCharCount
         def mostRepeatedChars = []
@@ -14,7 +21,7 @@ public class TextScanner {
 
         auxVal.each {ch ->
 
-            def currentCharCount = input?.toLowerCase().count(ch)
+            def currentCharCount = value?.toLowerCase().count(ch)
 
             if(!checkedChars.contains(ch)){
                 if(!mostRepeatedChars.isEmpty()){
@@ -34,8 +41,6 @@ public class TextScanner {
             }
 
         }
-
-        //if(mostRepeatedChars.size() == 1) return mostRepeatedChars
 
         return mostRepeatedChars
     }
