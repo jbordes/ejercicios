@@ -6,7 +6,7 @@ public class TextScanner {
 
     def getMostRepeatedChars(String input){
 
-        def auxVal = input.toLowerCase()
+        def auxVal = input?.toLowerCase()
 
         def int mostRepeatedCharCount
         def mostRepeatedChars = []
@@ -14,7 +14,7 @@ public class TextScanner {
 
         auxVal.each {ch ->
 
-            def currentCharCount = input.toLowerCase().count(ch)
+            def currentCharCount = input?.toLowerCase().count(ch)
 
             if(!checkedChars.contains(ch)){
                 if(!mostRepeatedChars.isEmpty()){

@@ -17,6 +17,8 @@ public class Main{
 				println "Los caracteres mas repetidos son: " + result
 			else
 				println "El caracter mas repetido es: " + result
+		} else {
+			println "Debe ingresar un texto para procesar"
 		}
 		
 	}
