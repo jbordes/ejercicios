@@ -41,7 +41,9 @@ public class TextScanner {
             }
 
         }
-
+        if(mostRepeatedCharCount == 1)
+            return null
+            
         return mostRepeatedChars
     }
 
