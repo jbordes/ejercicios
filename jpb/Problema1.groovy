@@ -5,7 +5,7 @@ public class Problema1{
 	public static void main(String[] args){
 		def scanner = new TextScanner()
 		
-		if(args){
+		if(args && !args[0].isEmpty()){
 			scanner.readInput(args[0])		
 			def result = scanner.getMostRepeatedChars()
 			
