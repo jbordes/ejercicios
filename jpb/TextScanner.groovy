@@ -4,6 +4,9 @@ public class TextScanner {
 
     def value
 
+    /**
+    Lee input. Si es un file setea el texto del file en value, sino setea el valor de input
+    */
     def readInput(String input){
         def file = new File(input)
         if(!file.exists())
@@ -11,6 +14,10 @@ public class TextScanner {
         else value = file.getText()
     }
 
+    /** 
+    Devuelve un array con el/los caracter/es mas repetido/s del value. 
+        Si no hay caracteres repetidos devuelve null
+    */
     def getMostRepeatedChars(){
 
         def auxVal = value?.toLowerCase()
@@ -19,11 +26,12 @@ public class TextScanner {
         def mostRepeatedChars = []
         def checkedChars = []
 
-        auxVal.each {ch ->
+        auxVal.each { ch ->
 
             def currentCharCount = value?.toLowerCase().count(ch)
-
+            
             if(!checkedChars.contains(ch)){
+
                 if(!mostRepeatedChars.isEmpty()){
                     if(currentCharCount > mostRepeatedCharCount){
                         mostRepeatedChars.clear()
@@ -43,7 +51,7 @@ public class TextScanner {
         }
         if(mostRepeatedCharCount == 1)
             return null
-            
+
         return mostRepeatedChars
     }
 
