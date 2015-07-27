@@ -1,8 +1,8 @@
-- Dar permisos de ejecucion a getMostRepeatedChars.sh 
+- Dar permisos de ejecucion a los .sh 
 
-chmod +x getMostRepeatedChars.sh
+ej: chmod +x getMostRepeatedChars.sh
 
-- Ejecutar getMostRepeatedChars.sh pasandole como parametro el texto o el nombre del html a procesar
+- Ejecutar .sh pasandole como parametro el texto o el nombre del html a procesar
 
 getMostRepeatedChars.sh "text"
-getMostRepeatedChars.sh "fileName.html"
+getMostRepeatedTags.sh "fileName.html"
