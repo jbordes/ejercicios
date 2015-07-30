@@ -148,7 +148,7 @@ public class TextScanner {
 
             println tagName
 
-            if(tag.contains("/")){        
+            if(trimTag.contains("/")){        
                 if(trimTag.indexOf("/") > 0){
                     repeatedTagsMap.get(tagName) ? repeatedTagsMap.put(tagName, repeatedTagsMap.get(tagName) + 1) : repeatedTagsMap.put(tagName, 1)
                 }
@@ -181,6 +181,63 @@ public class TextScanner {
         }
         println mostRepeatedTags
         return mostRepeatedTags
+    }
+
+    /** 
+    Muestra un output con los tags encontrados en orden descendente segun cantidad de repeticiones. 
+    Es un cambio al problema 2
+    */    
+
+    //TODO: Hacer un mapa con key = cantidad de repeticiones, value = un array de tags
+    // [2: [div, p], 1:[head, body]]
+    def listTagsOrderedByRepetitions(){
+        def lowerValue = new StringBuffer(value.toString().toLowerCase())
+
+        def tagList = lowerValue.toString().tokenize("<")
+        def tagsMap = new HashMap()
+
+        for(tag in tagList){
+
+            def trimTag = tag.trim()
+            def closeTagIndex = trimTag.indexOf(">")
+            if(closeTagIndex != -1)
+                trimTag = trimTag.substring(0, closeTagIndex)
+
+            def emptySpaceIndex = trimTag.indexOf(" ")
+
+            def tagName = trimTag.indexOf(" ") == -1 ? trimTag.replace("/","") : trimTag.substring(0, emptySpaceIndex)
+
+
+            if(trimTag.contains("/")){        
+                if(trimTag.indexOf("/") > 0){
+                    tagsMap.get(tagName) ? tagsMap.put(tagName, tagsMap.get(tagName) + 1) : tagsMap.put(tagName, 1)
+                }
+            }
+            else{
+                tagsMap.get(tagName) ? tagsMap.put(tagName, tagsMap.get(tagName) + 1) : tagsMap.put(tagName, 1)
+            }
+        }
+        
+        def tagsTreeMap = new TreeMap()
+
+        tagsMap.each{ tag, count ->
+            if(!tagsTreeMap.get(count)){
+                tagsTreeMap.put(count, [tag])
+            } else {
+                tagsTreeMap.get(count).add(tag)
+            }
+
+        }
+
+        println "COUNT\tTAGNAME"
+        tagsTreeMap.descendingMap().each{ count, array ->
+           array.each{ tag ->
+            println "${count}\t${tag}"
+           }
+           
+        }
+    
+        return tagsTreeMap.descendingMap()
     }
 
 }
