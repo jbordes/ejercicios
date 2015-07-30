@@ -132,22 +132,29 @@ public class TextScanner {
     def getMostRepeatedTags(){
         def lowerValue = new StringBuffer(value.toString().toLowerCase())
         println value
-        def tagList = lowerValue.toString().replace(">","").tokenize("<")
+        def tagList = lowerValue.toString().tokenize("<")
         def repeatedTagsMap = new HashMap()
-
+        println tagList
         for(tag in tagList){
 
             def trimTag = tag.trim()
+            def closeTagIndex = trimTag.indexOf(">")
+
+            trimTag = trimTag.substring(0, closeTagIndex)
+
             def emptySpaceIndex = trimTag.indexOf(" ")
+
             def tagName = trimTag.indexOf(" ") == -1 ? trimTag.replace("/","") : trimTag.substring(0, emptySpaceIndex)
-            
+
+            println tagName
+
             if(tag.contains("/")){        
                 if(trimTag.indexOf("/") > 0){
                     repeatedTagsMap.get(tagName) ? repeatedTagsMap.put(tagName, repeatedTagsMap.get(tagName) + 1) : repeatedTagsMap.put(tagName, 1)
                 }
             }
             else{
-         repeatedTagsMap.get(tagName) ? repeatedTagsMap.put(tagName, repeatedTagsMap.get(tagName) + 1) : repeatedTagsMap.put(tagName, 1)
+                repeatedTagsMap.get(tagName) ? repeatedTagsMap.put(tagName, repeatedTagsMap.get(tagName) + 1) : repeatedTagsMap.put(tagName, 1)
             }
         }
 
